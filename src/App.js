@@ -1,7 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
 import LoginView from "./LoginView/LoginView";
 import MainMenuView from "./MainMenuView/MainMenuView";
+import CustomerServiceView from "./CustomerServiceView/CustomerServiceView";
 
 function App() {
   return (
@@ -13,6 +15,9 @@ function App() {
           </Route>
           <Route path="/menu">
             <MainMenuView />
+          </Route>
+          <Route path="/customer-service">
+            <CustomerServiceView />
           </Route>
           <Route>
             <h1>Not found</h1>

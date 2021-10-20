@@ -19,7 +19,7 @@ function MainMenuView() {
       <NavBar />
       <h1>Main Menu</h1>
       <main>
-        <Link style={linkStyle} to="">
+        <Link style={linkStyle} to="/customer-service">
           <figure>
             <img src={customerService} alt="customer service" />
             <figcaption>Customer Service</figcaption>

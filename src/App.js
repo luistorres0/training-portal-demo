@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LoginView from "./LoginView/LoginView";
+import MainMenuView from "./MainMenuView/MainMenuView";
 import "./App.css";
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
             <LoginView />
           </Route>
           <Route path="/menu">
-            <h1>Main Menu</h1>
+            <MainMenuView />
           </Route>
           <Route>
             <h1>Not found</h1>

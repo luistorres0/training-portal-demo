@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router";
 import "./LoginForm.css";
 
 function LoginForm() {
@@ -7,6 +8,7 @@ function LoginForm() {
     password: "",
   };
 
+  const history = useHistory();
   const [formData, setFormData] = useState({ ...initialFormData });
 
   const handleInputChange = (e) => {
@@ -18,12 +20,35 @@ function LoginForm() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(formData);
+    try {
+      const response = await fetch("http://localhost:5000/users/login/", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ data: formData }),
+      });
 
-    setFormData({ ...initialFormData });
+      const data = await response.json();
+
+      if (data.message === "authenticated") {
+        history.push("/menu");
+      }
+
+      // TODO: When creating a new user, use the code below.
+      // await fetch("http://localhost:5000/users/", {
+      //   method: "post",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({ data: formData }),
+      // });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -43,7 +68,7 @@ function LoginForm() {
         <div className="form-control">
           <label htmlFor="password">Password</label>
           <input
-            type="text"
+            type="password"
             id="password"
             name="password"
             onChange={handleInputChange}

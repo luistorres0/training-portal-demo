@@ -6,18 +6,26 @@ import repairs from "../images/repairs.png";
 import "./MainMenuView.css";
 
 function MainMenuView() {
+  const linkStyle = {
+    textDecoration: "none",
+    color: "#555",
+    boxShadow: "3px 3px 5px rgba(0,0,0,0.1)",
+    borderRadius: "5px",
+    margin: "0 30px"
+  }
+
   return (
-    <div>
+    <div className="main-menu-view">
       <NavBar />
       <h1>Main Menu</h1>
       <main>
-        <Link to="">
+        <Link style={linkStyle} to="">
           <figure>
             <img src={customerService} alt="customer service" />
             <figcaption>Customer Service</figcaption>
           </figure>
         </Link>
-        <Link to="">
+        <Link style={linkStyle} to="">
           <figure>
             <img src={repairs} alt="repairs" />
             <figcaption>Repairs</figcaption>

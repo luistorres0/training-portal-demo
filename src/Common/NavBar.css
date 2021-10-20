@@ -1,8 +1,13 @@
 .navbar{
+    position: absolute;
+    margin: 0;
+    width: 100%;
+    top: 0;
+    left: 0;
     padding: 5px 20px;
     background-color: #f3ecec;
 }
 
 .navbar img{
-    width: 30%;
+    width: 300px;
 }

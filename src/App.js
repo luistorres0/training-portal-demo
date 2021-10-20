@@ -2,12 +2,11 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LoginView from "./LoginView/LoginView";
 import MainMenuView from "./MainMenuView/MainMenuView";
-import "./App.css";
 
 function App() {
   return (
     <Router>
-      <div className="App">
+      <div>
         <Switch>
           <Route exact path="/">
             <LoginView />

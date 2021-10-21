@@ -8,6 +8,7 @@ function CustomerServiceView() {
     <div className="customer-service-view">
       <NavBar />
       <h1>Customer Service Training</h1>
+      <hr />
       <main>
         <div className="video-link-container">
           <a href="https://www.youtube.com/watch?v=tlNK3eJvsz0" target="_blank" rel="noreferrer">

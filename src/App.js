@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import LoginView from "./LoginView/LoginView";
 import MainMenuView from "./MainMenuView/MainMenuView";
@@ -7,7 +7,7 @@ import CustomerServiceView from "./CustomerServiceView/CustomerServiceView";
 import RepairsView from "./RepairsView/RepairsView";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   return (
     <Router>
@@ -32,7 +32,12 @@ function App() {
           )}
 
           <Route>
-            <h1>Not found</h1>
+            <div style={{ width: "100%", textAlign: "center", position: "absolute", top: "45%" }}>
+              <h1>Page Not found</h1>
+              <h2>
+                Please login <Link to="/">here</Link>
+              </h2>
+            </div>
           </Route>
         </Switch>
       </div>

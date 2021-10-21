@@ -4,13 +4,13 @@ import "./LoginForm.css";
 
 function LoginForm({ setIsLoggedIn }) {
   const initialFormData = {
-    username: "",
+    email: "",
     password: "",
   };
 
   const history = useHistory();
   const [formData, setFormData] = useState({ ...initialFormData });
-  const [usernameError, setUsernameError] = useState("none");
+  const [emailError, setEmailError] = useState("none");
   const [passwordError, setPasswordError] = useState("none");
 
   const handleInputChange = (e) => {
@@ -23,16 +23,16 @@ function LoginForm({ setIsLoggedIn }) {
   };
 
   const validateFormData = () => {
-    const { username, password } = formData;
-    setUsernameError("none");
+    const { email, password } = formData;
+    setEmailError("none");
     setPasswordError("none");
 
     let isValid = true;
-    if (username.length === 0) {
-      setUsernameError("Username cannot be empty");
+    if (email.length === 0) {
+      setEmailError("Email cannot be empty");
       isValid = false;
     }
-    
+
     if (password.length === 0) {
       setPasswordError("Password cannot be empty");
       isValid = false;
@@ -51,29 +51,27 @@ function LoginForm({ setIsLoggedIn }) {
     e.preventDefault();
 
     if (validateFormData()) {
-      console.log("valid");
+      try {
+        const response = await fetch("http://localhost:5000/users/login/", {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ data: formData }),
+        });
+
+        const data = await response.json();
+
+        if (data.message === "authenticated") {
+          setIsLoggedIn(true);
+          history.push("/menu");
+        }
+      } catch (error) {
+        console.log(error);
+      }
     } else {
       console.log("not valid");
     }
-
-    // try {
-    //   const response = await fetch("http://localhost:5000/users/login/", {
-    //     method: "post",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({ data: formData }),
-    //   });
-
-    //   const data = await response.json();
-
-    //   if (data.message === "authenticated") {
-    //     setIsLoggedIn(true);
-    //     history.push("/menu");
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    // }
   };
 
   return (
@@ -81,15 +79,15 @@ function LoginForm({ setIsLoggedIn }) {
       <h3 className="login-form-heading">Login</h3>
       <form onSubmit={handleSubmit}>
         <div className="form-control">
-          <label htmlFor="username">Username</label>
+          <label htmlFor="email">Email</label>
           <input
             type="text"
-            id="username"
-            name="username"
+            id="email"
+            name="email"
             onChange={handleInputChange}
-            value={formData.username}
+            value={formData.email}
           />
-          <small className={usernameError !== "none" ? "show" : ""}>{usernameError}</small>
+          <small className={emailError !== "none" ? "show" : ""}>{emailError}</small>
         </div>
         <div className="form-control">
           <label htmlFor="password">Password</label>

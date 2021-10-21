@@ -25,7 +25,7 @@ function MainMenuView() {
             <figcaption>Customer Service</figcaption>
           </figure>
         </Link>
-        <Link style={linkStyle} to="">
+        <Link style={linkStyle} to="/repairs">
           <figure>
             <img src={repairs} alt="repairs" />
             <figcaption>Repairs</figcaption>

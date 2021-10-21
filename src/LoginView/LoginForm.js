@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router";
 import "./LoginForm.css";
 
-function LoginForm() {
+function LoginForm({ setIsLoggedIn }) {
   const initialFormData = {
     username: "",
     password: "",
@@ -35,6 +35,7 @@ function LoginForm() {
       const data = await response.json();
 
       if (data.message === "authenticated") {
+        setIsLoggedIn(true);
         history.push("/menu");
       }
 
